@@ -1,0 +1,41 @@
+﻿<Window x:Class="WpfApp1.Custom3DFigure"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:wpfx="http://schemas.xceed.com/wpf/xaml/toolkit"
+      xmlns:local="clr-namespace:WpfApp1"
+      mc:Ignorable="d"
+      Title="Меню создания пользовательской 3D фигуры" Background="#c2f6f8" Width="760" ResizeMode="NoResize" Height="320">
+
+    <Grid Margin="0,0,0,-97">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="77*"/>
+            <ColumnDefinition Width="19*"/>
+            <ColumnDefinition Width="498*"/>
+        </Grid.ColumnDefinitions>
+        <Button TabIndex="10" FontSize="16" Content="Применить" HorizontalAlignment="Left" Margin="275,250,0,0" VerticalAlignment="Top" Width="136" Height="26" Click="Apply" Grid.Column="2"/>
+        <Button TabIndex="11" FontSize="16" Content="Отмена" HorizontalAlignment="Left" Margin="441,250,0,0" VerticalAlignment="Top" Width="136" Height="26" Click="Cancel" Grid.Column="2"/>
+        <Label FontSize="16" Content="Цвет фигуры:" HorizontalAlignment="Left" Margin="12,238,0,0" VerticalAlignment="Top" Height="36" Width="110" Grid.ColumnSpan="2"/>
+        <wpfx:ColorPicker x:Name="ColorPicker" DisplayColorAndName="True" MaxHeight="45" MaxWidth="120" Margin="0,238,444,112" FontSize="16" Grid.Column="1" Grid.ColumnSpan="2"/>
+        <Label FontSize="16" Content="X:" HorizontalAlignment="Left" Margin="10,96,0,0" VerticalAlignment="Top" Width="29"/>
+        <Label FontSize="16" Content="Y:" HorizontalAlignment="Left" Margin="10,133,0,0" VerticalAlignment="Top" Width="28"/>
+        <TextBox TabIndex="0" x:Name="X" FontSize="16" HorizontalAlignment="Left" Height="32" Margin="43,97,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="134" Grid.ColumnSpan="3" />
+        <TextBox TabIndex="1" x:Name="Y" FontSize="16" HorizontalAlignment="Left" Height="30" Margin="43,137,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="134" Grid.ColumnSpan="3" />
+        <Label FontSize="16" Content="Имя фигуры:" HorizontalAlignment="Left" Margin="306,201,0,0" VerticalAlignment="Top" Height="36" Width="105" Grid.Column="2"/>
+        <TextBox TabIndex="9" x:Name="elementName" FontSize="16" HorizontalAlignment="Left" Height="30" Margin="441,201,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="133" Grid.Column="2"/>
+        <Label FontSize="16" Content="Z:" HorizontalAlignment="Left" Margin="10,172,0,0" VerticalAlignment="Top" Width="28"/>
+        <TextBox TabIndex="2" x:Name="Z" FontSize="16" HorizontalAlignment="Left" Height="30" Margin="43,176,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="134" Grid.ColumnSpan="3" Background="White"/>
+        <Label FontSize="16" Content="Координаты&#xD;&#xA;точки:" HorizontalAlignment="Left" Margin="12,46,0,0" VerticalAlignment="Top" Height="64" Width="134" Grid.ColumnSpan="3"/>
+        <Button Content="Добавить точку" Grid.Column="2" HorizontalAlignment="Left" Margin="60,176,0,0" VerticalAlignment="Top" Width="133" Height="30" FontSize="16" Click="AddPoint"/>
+        <Label FontSize="16" Content="Объединить следующие&#xD;&#xA; точки в треугольник:" HorizontalAlignment="Left" Margin="243,10,0,0" VerticalAlignment="Top" Height="64" Width="193" Grid.Column="2"/>
+        <Button Content="Объединить" Grid.Column="2" HorizontalAlignment="Left" Margin="441,17,0,0" VerticalAlignment="Top" Width="118" Height="37" FontSize="16" Click="AddTriangle"/>
+        <ListBox Grid.Column="2" HorizontalAlignment="Left" Height="154" Margin="60,10,0,0" VerticalAlignment="Top" Width="133" x:Name="pointsList" Keyboard.KeyDown="pointsList_KeyDown" FontSize="16"/>
+        <ListBox Grid.Column="2" HorizontalAlignment="Left" Height="66" Margin="441,113,0,0" VerticalAlignment="Top" Width="177" x:Name="trianglesList" Keyboard.KeyDown="trianglesList_KeyDown" FontSize="16"/>
+        <Label Content="Список точек:" HorizontalAlignment="Left" Margin="43,10,0,0" VerticalAlignment="Top" FontSize="16" Grid.ColumnSpan="3"/>
+        <Label Content="Список треугольников:" Grid.Column="2" HorizontalAlignment="Left" Margin="436,73,0,0" VerticalAlignment="Top" FontSize="16" Width="182"/>
+        <ComboBox Grid.Column="2" HorizontalAlignment="Left" Margin="243,73,0,0" VerticalAlignment="Top" Width="168" FontSize="16" x:Name="point1"/>
+        <ComboBox Grid.Column="2" HorizontalAlignment="Left" Margin="243,111,0,0" VerticalAlignment="Top" Width="168" FontSize="16" x:Name="point2"/>
+        <ComboBox Grid.Column="2" HorizontalAlignment="Left" Margin="243,149,0,0" VerticalAlignment="Top" Width="168" FontSize="16" x:Name="point3"/>
+    </Grid>
+</Window>

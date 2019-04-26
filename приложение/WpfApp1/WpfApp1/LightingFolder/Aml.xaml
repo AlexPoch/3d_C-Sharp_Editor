@@ -1,0 +1,18 @@
+﻿<Window x:Class="WpfApp1.Aml"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:wpfx="http://schemas.xceed.com/wpf/xaml/toolkit"
+      xmlns:local="clr-namespace:WpfApp1"
+      mc:Ignorable="d" 
+      d:DesignHeight="200"
+      Title="Источник рассеянного света" Background="#c2f6f8" Width="354" MaxHeight="230" ResizeMode="NoResize">
+
+    <Grid Margin="0,0,0,-20">
+        <Button FontSize="20" Content="Применить" HorizontalAlignment="Left" Margin="15,120,0,0" VerticalAlignment="Top" Width="120" Height="34" Click="Apply"/>
+        <Button FontSize="20" Content="Отмена" HorizontalAlignment="Left" Margin="177,120,0,0" VerticalAlignment="Top" Width="120" Height="34" Click="Cancel"/>
+        <Label FontSize="20" Content="Цвет света" HorizontalAlignment="Left" Margin="15,16,0,0" VerticalAlignment="Top" Height="36" Width="210"/>
+        <wpfx:ColorPicker x:Name="ColorPicker" DisplayColorAndName="True" MaxHeight="45" MaxWidth="120" Margin="177,16,51,139"/>
+    </Grid>
+</Window>

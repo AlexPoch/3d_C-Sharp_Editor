@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Хранилище Editor3DModelContainer" CdmEntityContainer="Editor3DEntities">
+    <EntitySetMapping Name="Editor3DFigures">
+      <EntityTypeMapping TypeName="Editor3DModel.Editor3DFigures">
+        <MappingFragment StoreEntitySet="Editor3DFigures">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="CreationTime" ColumnName="CreationTime" />
+          <ScalarProperty Name="Path" ColumnName="Path" />
+          <ScalarProperty Name="UserLogin" ColumnName="UserLogin" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserInfo">
+      <EntityTypeMapping TypeName="Editor3DModel.UserInfo">
+        <MappingFragment StoreEntitySet="UserInfo">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="UserLogin" ColumnName="UserLogin" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Surname" ColumnName="Surname" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="SecretWord" ColumnName="SecretWord" />
+          <ScalarProperty Name="CreationTime" ColumnName="CreationTime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="Editor3DModel.Users">
+        <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="Login" ColumnName="Login" />
+          <ScalarProperty Name="HashedPassword" ColumnName="HashedPassword" />
+          <ScalarProperty Name="Salt" ColumnName="Salt" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Editor3DModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Editor3DFigures">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CreationTime" Type="DateTime" Precision="3" />
+    <Property Name="Path" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="UserLogin" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Users" Relationship="Self.FK__Editor3DF__UserL__3C69FB99" FromRole="Editor3DFigures" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="UserInfo">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserLogin" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Surname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="SecretWord" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CreationTime" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="Users" Relationship="Self.FK__UserInfo__UserLo__398D8EEE" FromRole="UserInfo" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="Login" />
+    </Key>
+    <Property Name="Login" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="HashedPassword" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Salt" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Editor3DFigures" Relationship="Self.FK__Editor3DF__UserL__3C69FB99" FromRole="Users" ToRole="Editor3DFigures" />
+    <NavigationProperty Name="UserInfo" Relationship="Self.FK__UserInfo__UserLo__398D8EEE" FromRole="Users" ToRole="UserInfo" />
+  </EntityType>
+  <Association Name="FK__Editor3DF__UserL__3C69FB99">
+    <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+    <End Role="Editor3DFigures" Type="Self.Editor3DFigures" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Login" />
+      </Principal>
+      <Dependent Role="Editor3DFigures">
+        <PropertyRef Name="UserLogin" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__UserInfo__UserLo__398D8EEE">
+    <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+    <End Role="UserInfo" Type="Self.UserInfo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Login" />
+      </Principal>
+      <Dependent Role="UserInfo">
+        <PropertyRef Name="UserLogin" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Editor3DEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Editor3DFigures" EntityType="Self.Editor3DFigures" />
+    <EntitySet Name="UserInfo" EntityType="Self.UserInfo" />
+    <EntitySet Name="Users" EntityType="Self.Users" />
+    <AssociationSet Name="FK__Editor3DF__UserL__3C69FB99" Association="Self.FK__Editor3DF__UserL__3C69FB99">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Editor3DFigures" EntitySet="Editor3DFigures" />
+    </AssociationSet>
+    <AssociationSet Name="FK__UserInfo__UserLo__398D8EEE" Association="Self.FK__UserInfo__UserLo__398D8EEE">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="UserInfo" EntitySet="UserInfo" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

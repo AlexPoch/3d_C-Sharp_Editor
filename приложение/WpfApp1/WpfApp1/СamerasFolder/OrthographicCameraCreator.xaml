@@ -1,0 +1,36 @@
+﻿<Window x:Class="WpfApp1.camerasFolder.OrthographicCameraCreator"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:wpfx="http://schemas.xceed.com/wpf/xaml/toolkit"
+      xmlns:local="clr-namespace:WpfApp1.camerasFolder"
+      mc:Ignorable="d"
+      Title="Ортогональная камера" Background="#c2f6f8" Width="360" ResizeMode="NoResize" Height="320">
+
+    <Grid>
+        <StackPanel Margin="0,5,5,0">
+
+            <StackPanel VerticalAlignment="Center" Margin="0,20">
+                <Label FontSize="20" Content="Положение камеры:" Margin="76,0,75,0" />
+                <DockPanel HorizontalAlignment="Center">
+                    <TextBox TabIndex="2" x:Name="CX" FontSize="20" Height="30" TextWrapping="Wrap" Width="66"/>
+                    <TextBox TabIndex="3" x:Name="CY" FontSize="20" Height="30" TextWrapping="Wrap"  Width="66"/>
+                    <TextBox TabIndex="4" x:Name="CZ" FontSize="20" Height="30" TextWrapping="Wrap" Width="66" />
+                </DockPanel>
+            </StackPanel>
+            <StackPanel VerticalAlignment="Center">
+                <Label FontSize="20" Content="Направление камеры:" Height="39" Margin="62,0,60,0"/>
+                <DockPanel HorizontalAlignment="Center">
+                    <TextBox TabIndex="5" x:Name="NX" FontSize="20" Height="30" TextWrapping="Wrap" Width="66" />
+                    <TextBox TabIndex="6" x:Name="NY" FontSize="20" Height="30" TextWrapping="Wrap"  Width="66"/>
+                    <TextBox TabIndex="7" x:Name="NZ" FontSize="20" Height="30" TextWrapping="Wrap" Width="66" />
+                </DockPanel>
+            </StackPanel>
+            <DockPanel Margin="0,40,0,0" HorizontalAlignment="Center">
+                <Button TabIndex="10" FontSize="20" Content="Применить" Width="123" Height="34" Click="Apply" Margin="0,0,40,0"/>
+                <Button TabIndex="11" FontSize="20" Content="Отмена" Width="123" Height="34" Click="Cancel"/>
+            </DockPanel>
+        </StackPanel>
+    </Grid>
+</Window>

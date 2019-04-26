@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="WpfApp1.camerasFolder.CameraSelector">
+    <Position X="0.5" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAgAAAAA=</HashCode>
+      <FileName>СamerasFolder\CameraSelector.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WpfApp1.camerasFolder.OrthographicCameraCreator" BaseTypeListCollapsed="true">
+    <Position X="4" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABAAAQBAAAAAAAEIAAAAAAAAAAAAAQgAAAAAAgBA=</HashCode>
+      <FileName>СamerasFolder\OrthographicCameraCreator.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="WpfApp1.camerasFolder.PerspectiveCameraCreator" BaseTypeListCollapsed="true">
+    <Position X="2.25" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABAAAQBAAAAAAAEIAAAAAAAAAAAAAQgAAAAAAgBA=</HashCode>
+      <FileName>СamerasFolder\PerspectiveCameraCreator.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

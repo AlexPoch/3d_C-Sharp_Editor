@@ -1,0 +1,165 @@
+﻿<Window x:Class="WpfApp1.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp1"
+        mc:Ignorable="d"
+        Title="3D Редактор" Height="800" Width="1200" MinWidth="950" MinHeight="675" Background="#c2f6f8">
+    <Grid x:Name="MainGrid">
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" MinWidth="600"/>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="0.2*" MinWidth="185" MaxWidth="300" />
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition MinHeight="30" MaxHeight="35"/>
+            <RowDefinition Height="0.7*" MinHeight="260"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*" MinHeight="270"/>
+        </Grid.RowDefinitions>
+
+        <Menu Height="35" VerticalAlignment="Top" FontSize="20" HorizontalAlignment="Stretch" Grid.Column="0" Grid.ColumnSpan="3">
+            <Menu.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <DockPanel HorizontalAlignment="Stretch"></DockPanel>
+                </ItemsPanelTemplate>
+            </Menu.ItemsPanel>
+            <MenuItem Header="3D Мастер" Height="35" VerticalAlignment="Top" Click="CreateCustom3D">
+            </MenuItem>
+            <MenuItem Header="2D Фигуры">
+                <MenuItem Header="Прямоугольник" Click="RectCreate"></MenuItem>
+                <MenuItem Header="Треугольник" Click="TriangleCreate"></MenuItem>
+                <MenuItem Header="Круг" Click="CircleCreate"></MenuItem>
+            </MenuItem>
+            <Label Content="Освещение: "/>
+            <ComboBox Width="170" x:Name="ligthsComboBox">
+                <ComboBoxItem Selected="LightSelected" x:Name="drl">Направленное</ComboBoxItem>
+                <ComboBoxItem Selected="LightSelected" x:Name="aml">Рассеяное</ComboBoxItem>
+                <ComboBoxItem Selected="LightSelected" x:Name="ptl">Точечное</ComboBoxItem>
+                <ComboBoxItem Selected="LightSelected" x:Name="spl">"Камерное"</ComboBoxItem>
+            </ComboBox>
+            <Label Content="Проекция: "></Label>
+            <ComboBox Width="170" x:Name="cameraBoxer">
+                <ComboBoxItem Selected="CameraSelected" x:Name="pers">Перспективная</ComboBoxItem>
+                <ComboBoxItem Selected="CameraSelected" x:Name="orth">Ортогональная</ComboBoxItem>
+            </ComboBox>
+                <MenuItem Header="Войти" HorizontalAlignment="Right" Click="MenuItem_Click" x:Name="DB_Enter_Button">
+                <MenuItem.Icon>
+                    <Image Style="{DynamicResource avatar}"></Image>
+                </MenuItem.Icon>
+            </MenuItem>
+        </Menu>
+
+        <GridSplitter Grid.Column="1" Grid.Row="1" Grid.RowSpan="3" ShowsPreview="False" Width="5"
+        HorizontalAlignment="Center" VerticalAlignment="Stretch" Background="#80f6f8" Margin="0,0,3,0"/>
+        <GridSplitter Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="2" ShowsPreview="False" Height="5"
+        HorizontalAlignment="Stretch" VerticalAlignment="Center" Background="#80f6f8"/>
+
+        <Viewport3D Grid.Column="0" Grid.Row="1" Grid.RowSpan="3" ClipToBounds="True" x:Name="mainViewport">
+            <Viewport3D.Camera>
+                <PerspectiveCamera x:Name="perspectiveCameraEditor" Position="2,3,45"/>
+            </Viewport3D.Camera>
+            <Viewport3D.Children>
+                <ModelVisual3D>
+                    <ModelVisual3D.Content>
+                        <Model3DGroup x:Name="LightGroup">
+                            <DirectionalLight Direction="0,0,-20" Color="White"/>
+                        </Model3DGroup>
+                    </ModelVisual3D.Content>
+                </ModelVisual3D>
+
+                <ModelVisual3D x:Name="Figures">
+                    <ModelVisual3D.Content>
+                        <Model3DGroup x:Name="Figures3D">
+                        </Model3DGroup>
+                    </ModelVisual3D.Content>
+                    <ModelVisual3D.Transform>
+                        <Transform3DGroup x:Name="transformGroup">
+                            <RotateTransform3D>
+                                <RotateTransform3D.Rotation>
+                                    <AxisAngleRotation3D x:Name="figureRotateTransformationX" Axis="1,0,0"/>
+                                </RotateTransform3D.Rotation>
+                            </RotateTransform3D>
+                            <RotateTransform3D>
+                                <RotateTransform3D.Rotation>
+                                    <AxisAngleRotation3D x:Name="figureRotateTransformationY" Axis="0,1,0" Angle="5"/>
+                                </RotateTransform3D.Rotation>
+                            </RotateTransform3D>
+                            <RotateTransform3D>
+                                <RotateTransform3D.Rotation>
+                                    <AxisAngleRotation3D x:Name="figureRotateTransformationZ" Axis="0,0,1"/>
+                                </RotateTransform3D.Rotation>
+                            </RotateTransform3D>
+                        </Transform3DGroup>
+                    </ModelVisual3D.Transform>
+
+                </ModelVisual3D>
+
+                <ModelVisual3D x:Name="osLines">
+                    <ModelVisual3D.Content>
+                        <Model3DGroup>
+                            <GeometryModel3D>
+                                <GeometryModel3D.Geometry>
+                                    <MeshGeometry3D Positions="0.05,0,0.05 0.05,0,-0.05 -0.05,0,0.05 -0.05,0,-0.05 0.05,10,0.05 0.05,10,-0.05 -0.05,10,0.05 -0.05,10,-0.05"
+                                                    TriangleIndices="6,2,0 6,0,4 4,0,1 4,1,5 5,1,3 5,3,7 7,3,2 7,2,6 2,3,1 2,1,0 7,6,4 7,4,5"/>
+                                </GeometryModel3D.Geometry>
+                                <GeometryModel3D.Material>
+                                    <MaterialGroup>
+                                        <DiffuseMaterial x:Name="OsXMaterial" Brush="Blue"/>
+                                    </MaterialGroup>
+                                </GeometryModel3D.Material>
+                            </GeometryModel3D>
+
+                            <GeometryModel3D>
+                                <GeometryModel3D.Geometry>
+                                    <MeshGeometry3D Positions="10,-0.05,0.05 10,-0.05,-0.05 -0.05,-0.05,0.05 -0.05,-0.05,-0.05 10,0.05,0.05 10,0.05,-0.05 0,0.05,0.05 0,0.05,-0.05"
+                                                    TriangleIndices="6,2,0 6,0,4 4,0,1 4,1,5 5,1,3 5,3,7 7,3,2 7,2,6 2,3,1 2,1,0 7,6,4 7,4,5"/>
+                                </GeometryModel3D.Geometry>
+                                <GeometryModel3D.Material>
+                                    <MaterialGroup>
+                                        <DiffuseMaterial x:Name="OsYMaterial" Brush="Red"/>
+                                    </MaterialGroup>
+                                </GeometryModel3D.Material>
+                            </GeometryModel3D>
+
+                            <GeometryModel3D>
+                                <GeometryModel3D.Geometry>
+                                    <MeshGeometry3D Positions="-0.05,-0.05,10 0.05,-0.05,10 -0.05,-0.05,-0.05 0.05,-0.05,-0.05 -0.05,0.05,10 0.05,0.05,10 -0.05,0.05,-0.05 0.05,0.05,-0.05"
+                                                    TriangleIndices="6,2,0 6,0,4 4,0,1 4,1,5 5,1,3 5,3,7 7,3,2 7,2,6 2,3,1 2,1,0 7,6,4 7,4,5"/>
+                                </GeometryModel3D.Geometry>
+                                <GeometryModel3D.Material>
+                                    <MaterialGroup>
+                                        <DiffuseMaterial x:Name="OsZMaterial" Brush="Green"/>
+                                    </MaterialGroup>
+                                </GeometryModel3D.Material>
+                            </GeometryModel3D>
+                        </Model3DGroup>
+                    </ModelVisual3D.Content>
+                    
+                </ModelVisual3D>
+
+            </Viewport3D.Children>
+        </Viewport3D>
+
+        <StackPanel Grid.Column="3" Grid.Row="1">
+            <Label HorizontalContentAlignment="Center" Margin="0 5" FontSize="18" Content="Поворот фигуры &#xA;    вокруг осей"/>
+            <Slider x:Name="gridSliderX" Height="20" Minimum="0" Maximum="360" Margin="5,0,5,0" Value="{Binding ElementName=figureRotateTransformationX, Path= Angle}"/>
+            <Slider x:Name="gridSliderY" Height="20" Minimum="0" Maximum="360" Margin="5,0,5,0" Value="{Binding ElementName=figureRotateTransformationY, Path= Angle}"/>
+            <Slider x:Name="gridSliderZ" Height="20" Minimum="0" Maximum="360" Margin="5,0,5,0" Value="{Binding ElementName=figureRotateTransformationZ, Path= Angle}" />
+            <Label HorizontalContentAlignment="Center" Margin="5,0,5,0" FontSize="18" Content="    Перемещение &#xD;&#xA;камеры вдоль осей"/>
+            <Slider x:Name="objectSliderX" Height="20" Value="0" Minimum="-10" Maximum="10" Margin="5,0,5,0" ValueChanged="ObjectSliderValueChanged"/>
+            <Slider x:Name="objectSliderY" Height="20" Value="0" Minimum="-10" Maximum="10" Margin="5,0,5,0" ValueChanged="ObjectSliderValueChanged"/>
+            <Slider x:Name="objectSliderZ" Height="20" Value="50" Minimum="0" Maximum="35" Margin="5,0,5,0"  ValueChanged="ObjectSliderValueChanged"/>
+        </StackPanel> 
+        <StackPanel Grid.Column="2" Grid.Row="3">
+            <Label Content="        Фигуры:" Height="38" Width="177" FontSize="20"/>
+            <ComboBox Width="177" x:Name="FiguresList3D" FontSize="20" SelectionChanged="FiguresList3D_SelectionChanged"/>
+            <Label Content="   Действия над&#xD;&#xA;      фигурой:" Height="73" Width="177" FontSize="20"/>
+            <Button Content="Изменить" FontSize="20" Margin="10,0,15,10" Height="40" Click="UpdateFigure" x:Name="Updater" IsEnabled="false"/>
+            <Button Content="Удалить" FontSize="20" Margin="10,0,15,0" Height="40" Click="DeleteFigure" x:Name="Deleter" IsEnabled="False"/>
+        </StackPanel>
+    </Grid>
+</Window>
